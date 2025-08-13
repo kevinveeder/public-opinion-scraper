@@ -416,13 +416,6 @@ CMD ["python", "main.py", "monitor"]
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Author
-
-**Kevin Veeder**
-- Portfolio: [Your Portfolio URL]
-- LinkedIn: [Your LinkedIn URL]
-- Email: [Your Email]
-
 ## Acknowledgments
 
 - **VADER Sentiment**: Hutto, C.J. & Gilbert, E.E. (2014)
