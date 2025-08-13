@@ -42,7 +42,7 @@ cd public-opinion-scraper
 2. **Create virtual environment**
 ```bash
 python -m venv venv
-venv\\Scripts\\activate # On Mac: source venv/bin/activate  
+venv\Scripts\activate # On Mac: source venv/bin/activate  
 ```
 
 3. **Install dependencies**
