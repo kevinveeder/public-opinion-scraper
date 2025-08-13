@@ -1,30 +1,30 @@
 # Real-Time Social Media Sentiment Monitor
 
-A comprehensive real-time sentiment monitoring system that tracks public opinion on user-specified keywords across multiple social media platforms. Built for data science portfolio and production use.
+A real-time sentiment monitoring system that tracks public opinion on specified keywords across multiple social media platforms. The system collects posts from Reddit and Hacker News, analyzes their sentiment using multiple machine learning models, and provides insights through both a web dashboard and command-line interface.
 
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)
 
-## 🌟 Features
+## Features
 
 ### Core Functionality
-- **Real-time Data Collection**: Monitor Reddit, Hacker News, and other platforms every 2-5 minutes
-- **Advanced Sentiment Analysis**: Multiple models including VADER and Hugging Face transformers
-- **Intelligent Analytics**: Trend analysis, anomaly detection, and volume correlation
-- **Interactive Dashboard**: Real-time Streamlit web interface with live charts
-- **Command Line Interface**: Comprehensive CLI for all operations
-- **Smart Alerting**: Email and Slack notifications for sentiment threshold breaches
+- **Real-time Data Collection**: Automatically collects posts from Reddit and Hacker News every 2-5 minutes
+- **Sentiment Analysis**: Uses multiple models including VADER and Hugging Face transformers for accuracy
+- **Analytics**: Provides trend analysis, anomaly detection, and volume correlation insights
+- **Web Dashboard**: Interactive Streamlit interface with live charts and real-time updates
+- **Command Line Interface**: Complete CLI for managing keywords, collecting data, and monitoring
+- **Alerting**: Email and Slack notifications when sentiment crosses configured thresholds
 
-### Advanced Features
-- **Multi-Model Sentiment Analysis**: Weighted combination of VADER and RoBERTa models
-- **Context-Aware Processing**: Negation handling, intensifier detection, emoji processing
-- **Historical Analytics**: 7+ days of data retention with trend analysis
-- **Anomaly Detection**: Statistical methods to identify unusual sentiment patterns
-- **Entity Recognition**: Automatic extraction of companies, cryptocurrencies, and stock symbols
-- **Comparative Analysis**: Side-by-side keyword performance comparison
+### Additional Features
+- **Multi-Model Analysis**: Combines VADER and RoBERTa models with configurable weights
+- **Text Processing**: Handles negation, intensifiers, and emoji processing for better accuracy
+- **Historical Data**: Stores data for trend analysis with configurable retention periods
+- **Anomaly Detection**: Uses statistical methods to identify unusual sentiment patterns
+- **Entity Recognition**: Extracts companies, cryptocurrencies, and stock symbols from text
+- **Comparative Analysis**: Compare sentiment across multiple keywords simultaneously
 
-## 🚀 Quick Start
+## Getting Started
 
 ### Prerequisites
 - Python 3.8+
@@ -35,7 +35,7 @@ A comprehensive real-time sentiment monitoring system that tracks public opinion
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/your-username/public-opinion-scraper.git
+git clone https://github.com/kevinveeder/public-opinion-scraper.git
 cd public-opinion-scraper
 ```
 
@@ -79,20 +79,20 @@ python main.py analyze --keyword bitcoin
 streamlit run dashboard.py
 ```
 
-## 📊 Dashboard
+## Dashboard
 
 The Streamlit dashboard provides real-time visualization of sentiment data:
 
-- **Sentiment Gauge**: Current overall sentiment with emoji indicators
-- **Time Series Charts**: Sentiment trends over time with confidence intervals
-- **Distribution Analysis**: Pie charts showing positive/negative/neutral breakdown
+- **Sentiment Gauge**: Shows current overall sentiment score
+- **Time Series Charts**: Displays sentiment trends over time with confidence intervals
+- **Distribution Analysis**: Pie charts showing positive, negative, and neutral post breakdown
 - **Volume Correlation**: Scatter plots showing relationship between post volume and sentiment
 - **Recent Posts Table**: Latest posts with sentiment scores and metadata
-- **Real-time Updates**: Auto-refresh every 30 seconds
+- **Real-time Updates**: Automatically refreshes every 30 seconds
 
-Access at: `http://localhost:8501`
+Access the dashboard at: `http://localhost:8501`
 
-## 🖥️ Command Line Interface
+## Command Line Interface
 
 ### Keyword Management
 ```bash
@@ -153,7 +153,7 @@ python main.py export --keyword bitcoin --output bitcoin_sentiment.csv
 python main.py status
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 ### Main Configuration (`config/config.yaml`)
 ```yaml
@@ -211,7 +211,7 @@ slack:
   webhook_url: "your_slack_webhook_url"
 ```
 
-## 🔧 API Setup
+## API Setup
 
 ### Reddit API Setup
 1. Go to [Reddit Apps](https://www.reddit.com/prefs/apps)
@@ -226,36 +226,36 @@ slack:
 - **Email**: For alert notifications
 - **Slack**: For team notifications
 
-## 📈 Analytics Features
+## Analytics Features
 
 ### Trend Analysis
-- **Direction Detection**: Improving, declining, or stable trends
-- **Strength Measurement**: Statistical confidence in trend direction
-- **Change Quantification**: Magnitude of sentiment shifts
-- **Confidence Scoring**: Reliability of trend analysis
+- **Direction Detection**: Identifies improving, declining, or stable trends
+- **Strength Measurement**: Provides statistical confidence in trend direction
+- **Change Quantification**: Measures magnitude of sentiment shifts
+- **Confidence Scoring**: Assesses reliability of trend analysis
 
 ### Momentum Indicators
-- **Moving Averages**: 5-period and 10-period sentiment averages
-- **Momentum Signals**: Bullish, bearish, or neutral momentum
-- **Volatility Measurement**: Sentiment stability assessment
-- **Rate of Change**: Speed of sentiment shifts
+- **Moving Averages**: Calculates 5-period and 10-period sentiment averages
+- **Momentum Signals**: Identifies bullish, bearish, or neutral momentum
+- **Volatility Measurement**: Assesses sentiment stability
+- **Rate of Change**: Measures speed of sentiment shifts
 
 ### Anomaly Detection
-- **Statistical Outliers**: Z-score based anomaly identification
-- **Spike Detection**: Unusual positive or negative sentiment spikes
-- **Severity Classification**: High, medium, or low impact anomalies
-- **Temporal Analysis**: Time-based anomaly patterns
+- **Statistical Outliers**: Uses Z-score based identification methods
+- **Spike Detection**: Identifies unusual positive or negative sentiment spikes
+- **Severity Classification**: Categorizes anomalies as high, medium, or low impact
+- **Temporal Analysis**: Analyzes time-based anomaly patterns
 
 ### Comparative Analysis
-- **Multi-keyword Comparison**: Side-by-side performance metrics
-- **Best/Worst Performers**: Automatic identification of top and bottom performers
-- **Volume Analysis**: Post volume vs sentiment correlation
-- **Range Analysis**: Sentiment and volume distribution across keywords
+- **Multi-keyword Comparison**: Provides side-by-side performance metrics
+- **Performance Ranking**: Identifies top and bottom performing keywords
+- **Volume Analysis**: Analyzes relationship between post volume and sentiment
+- **Distribution Analysis**: Shows sentiment and volume distribution across keywords
 
-## 🚨 Alerting System
+## Alerting System
 
 ### Alert Types
-- **Sentiment Thresholds**: Alerts when sentiment crosses predefined levels
+- **Sentiment Thresholds**: Triggers when sentiment crosses predefined levels
 - **Volume Spikes**: Notifications for unusual activity levels
 - **Rapid Changes**: Alerts for sudden sentiment shifts
 - **Anomaly Detection**: Notifications for statistical outliers
@@ -272,7 +272,7 @@ slack:
 # Configure thresholds in config.yaml
 ```
 
-## 🧪 Testing
+## Testing
 
 ### Run Tests
 ```bash
@@ -296,7 +296,7 @@ pytest -v
 - **Analytics**: Trend analysis, anomaly detection
 - **Configuration**: Settings validation, secret management
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 public-opinion-scraper/
@@ -327,35 +327,35 @@ public-opinion-scraper/
 └── requirements.txt               # Dependencies
 ```
 
-## 🔍 Sentiment Models
+## Sentiment Models
 
 ### VADER (Valence Aware Dictionary and sEntiment Reasoner)
-- **Optimized for social media text**
-- **Handles negation, punctuation, and capitalization**
-- **Fast processing, minimal resource requirements**
-- **Good baseline for real-time analysis**
+- Optimized for social media text analysis
+- Handles negation, punctuation, and capitalization effectively
+- Fast processing with minimal resource requirements
+- Provides good baseline accuracy for real-time analysis
 
 ### RoBERTa (Robustly Optimized BERT Pretraining Approach)
-- **State-of-the-art transformer model**
-- **Fine-tuned on Twitter data**
-- **High accuracy for nuanced sentiment**
-- **Resource intensive but superior performance**
+- State-of-the-art transformer model for sentiment analysis
+- Fine-tuned specifically on Twitter data
+- Provides high accuracy for nuanced sentiment detection
+- More resource intensive but offers superior performance
 
 ### Weighted Ensemble
-- **Combines multiple models for better accuracy**
-- **Configurable weights for different models**
-- **Confidence-based result selection**
-- **Fallback mechanisms for model failures**
+- Combines multiple models for improved accuracy
+- Configurable weights allow customization for different use cases
+- Uses confidence-based result selection
+- Includes fallback mechanisms for model failures
 
-## 📊 Data Models
+## Data Models
 
 ### Database Schema
-- **Keywords**: Monitored search terms
-- **Platforms**: Social media sources (Reddit, HN, etc.)
-- **Posts**: Collected content with metadata
-- **Sentiment Scores**: Analysis results from multiple models
-- **Alerts**: Triggered notifications and their status
-- **Sentiment Summaries**: Aggregated analytics data
+- **Keywords**: Stores monitored search terms
+- **Platforms**: Contains social media sources (Reddit, Hacker News, etc.)
+- **Posts**: Stores collected content with metadata
+- **Sentiment Scores**: Contains analysis results from multiple models
+- **Alerts**: Tracks triggered notifications and their status
+- **Sentiment Summaries**: Stores aggregated analytics data
 
 ### Data Flow
 1. **Collection**: Gather posts matching keywords from platforms
@@ -365,7 +365,7 @@ public-opinion-scraper/
 5. **Alerting**: Check thresholds and send notifications
 6. **Visualization**: Display results in dashboard
 
-## 🚀 Deployment
+## Deployment
 
 ### Local Development
 ```bash
@@ -398,12 +398,12 @@ COPY . .
 CMD ["python", "main.py", "monitor"]
 ```
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+2. Create a feature branch (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -m 'Add new feature'`)
+4. Push to the branch (`git push origin feature/new-feature`)
 5. Open a Pull Request
 
 ### Development Guidelines
@@ -412,44 +412,40 @@ CMD ["python", "main.py", "monitor"]
 - Update documentation for API changes
 - Use type hints where appropriate
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👨‍💻 Author
+## Author
 
 **Kevin Veeder**
 - Portfolio: [Your Portfolio URL]
 - LinkedIn: [Your LinkedIn URL]
 - Email: [Your Email]
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **VADER Sentiment**: Hutto, C.J. & Gilbert, E.E. (2014)
-- **Hugging Face**: For providing excellent transformer models
+- **Hugging Face**: For providing transformer models and infrastructure
 - **Reddit API**: For enabling social media data access
-- **Streamlit**: For making beautiful web apps easy
-- **All contributors**: Who help improve this project
+- **Streamlit**: For web application framework
+- **Contributors**: All who help improve this project
 
-## 📈 Roadmap
+## Roadmap
 
 ### Upcoming Features
-- [ ] Twitter/X integration
-- [ ] Real-time WebSocket updates
-- [ ] Machine learning model fine-tuning
-- [ ] Advanced entity recognition
-- [ ] Sentiment explanation generation
-- [ ] Multi-language support
-- [ ] Performance optimizations
-- [ ] Cloud deployment guides
+- Twitter/X integration
+- Real-time WebSocket updates
+- Machine learning model fine-tuning
+- Advanced entity recognition
+- Sentiment explanation generation
+- Multi-language support
+- Performance optimizations
+- Cloud deployment guides
 
 ### Long-term Goals
-- Support for more platforms (LinkedIn, Facebook, etc.)
+- Support for additional platforms (LinkedIn, Facebook, etc.)
 - Advanced NLP features (topic modeling, aspect-based sentiment)
 - Real-time streaming analytics
 - Machine learning model training pipeline
 - Enterprise features (user management, API access)
-
----
-
-**Built with ❤️ for the data science community**
