@@ -80,3 +80,6 @@ models/
 # Temporary files
 *.tmp
 *.temp
+
+# Private Documentation
+TECHNICAL_OVERVIEW.md
