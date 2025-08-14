@@ -42,7 +42,7 @@ cd public-opinion-scraper
 2. **Create virtual environment**
 ```bash
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\\Scripts\\activate
+venv\Scripts\activate # On Mac: source venv/bin/activate  
 ```
 
 3. **Install dependencies**
@@ -415,13 +415,6 @@ CMD ["python", "main.py", "monitor"]
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Author
-
-**Kevin Veeder**
-- Portfolio: [Your Portfolio URL]
-- LinkedIn: [Your LinkedIn URL]
-- Email: [Your Email]
 
 ## Acknowledgments
 
