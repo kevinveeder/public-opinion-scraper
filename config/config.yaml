@@ -1,120 +1,76 @@
-# Main Configuration File for Sentiment Monitor
-
-# Database Configuration
-database:
-  path: "data/sentiment_monitor.db"
-  backup_interval_hours: 24
-  retention_days: 30
-
-# Data Collection Settings
+alerts:
+  enabled: true
+  rapid_change_threshold: 0.3
+  thresholds:
+    negative: -0.3
+    positive: 0.3
+    very_negative: -0.8
+    very_positive: 0.8
+  volume_threshold: 10
 collection:
-  # How often to check for new posts (minutes)
-  polling_interval: 3
-  
-  # Maximum posts to collect per poll
   max_posts_per_poll: 50
-  
-  # Platforms to monitor
   platforms:
+    hackernews:
+      enabled: true
+      max_posts: 50
     reddit:
       enabled: true
       max_posts: 100
       subreddits:
-        - "all"
-        - "news"
-        - "worldnews"
-        - "technology"
-    
-    hackernews:
-      enabled: true
-      max_posts: 50
-
-# Sentiment Analysis Configuration
+      - all
+      - news
+      - worldnews
+      - technology
+  polling_interval: 3
+dashboard:
+  charts:
+    sentiment_scale:
+    - -1.0
+    - 1.0
+    time_window_hours: 24
+  max_recent_posts: 20
+  refresh_interval_seconds: 30
+  title: Real-Time Sentiment Monitor
+database:
+  backup_interval_hours: 24
+  path: data/sentiment_monitor.db
+  retention_days: 30
+keywords:
+  boolean_support: true
+  case_sensitive: false
+  default:
+  - bitcoin
+  - tesla
+  - AI
+  - Donald Trump
+logging:
+  backup_count: 5
+  console_format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+  file_format: '%(asctime)s - %(name)s - %(levelname)s - %(funcName)s:%(lineno)d -
+    %(message)s'
+  file_path: logs/sentiment_monitor.log
+  level: INFO
+  max_file_size_mb: 10
+performance:
+  backoff_factor: 1.0
+  max_retries: 3
+  max_workers: 4
+  request_timeout: 30
 sentiment:
+  confidence_threshold: 0.7
   models:
+    roberta:
+      enabled: true
+      model_name: cardiffnlp/twitter-roberta-base-sentiment-latest
+      weight: 0.6
     vader:
       enabled: true
       weight: 0.4
-    
-    roberta:
-      enabled: true
-      model_name: "cardiffnlp/twitter-roberta-base-sentiment-latest"
-      weight: 0.6
-  
-  # Minimum confidence threshold for alerts
-  confidence_threshold: 0.7
-
-# Keywords and Monitoring
-keywords:
-  # Default keywords to monitor (can be modified via CLI)
-  default:
-    - "bitcoin"
-    - "tesla"
-    - "AI"
-  
-  # Boolean operators support
-  boolean_support: true
-  
-  # Case sensitivity
-  case_sensitive: false
-
-# Alerting System
-alerts:
-  enabled: true
-  
-  # Sentiment thresholds for alerts
-  thresholds:
-    very_negative: -0.8
-    negative: -0.3
-    positive: 0.3
-    very_positive: 0.8
-  
-  # Volume thresholds (mentions per hour)
-  volume_threshold: 10
-  
-  # Rapid change detection (% change in sentiment over time)
-  rapid_change_threshold: 0.3
-
-# Dashboard Configuration
-dashboard:
-  title: "Real-Time Sentiment Monitor"
-  refresh_interval_seconds: 30
-  max_recent_posts: 20
-  
-  # Chart settings
-  charts:
-    time_window_hours: 24
-    sentiment_scale: [-1.0, 1.0]
-
-# Logging Configuration
-logging:
-  level: "INFO"
-  file_path: "logs/sentiment_monitor.log"
-  max_file_size_mb: 10
-  backup_count: 5
-  
-  # Log formats
-  console_format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-  file_format: "%(asctime)s - %(name)s - %(levelname)s - %(funcName)s:%(lineno)d - %(message)s"
-
-# Performance Settings
-performance:
-  max_workers: 4
-  request_timeout: 30
-  max_retries: 3
-  backoff_factor: 1.0
-
-# Text Processing
 text_processing:
-  # Maximum text length to process
-  max_text_length: 1000
-  
-  # Language detection
   detect_language: true
-  target_language: "en"
-  
-  # Preprocessing options
-  remove_urls: true
-  remove_mentions: false
-  remove_hashtags: false
   handle_emojis: true
+  max_text_length: 1000
+  remove_hashtags: false
+  remove_mentions: false
+  remove_urls: true
+  target_language: en

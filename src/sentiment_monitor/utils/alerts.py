@@ -169,14 +169,14 @@ Sentiment Monitor by Kevin Veeder
             slack_config = self.secrets.get('slack', {})
             webhook_url = slack_config['webhook_url']
             
-            # Determine emoji based on severity
-            emoji_map = {
-                'critical': '🚨',
-                'high': '⚠️',
-                'medium': '📊',
-                'low': 'ℹ️'
+            # Determine prefix based on severity
+            severity_prefix = {
+                'critical': '[CRITICAL]',
+                'high': '[HIGH]',
+                'medium': '[MEDIUM]',
+                'low': '[INFO]'
             }
-            emoji = emoji_map.get(alert.severity, '📊')
+            prefix = severity_prefix.get(alert.severity, '[ALERT]')
             
             # Color based on severity
             color_map = {
@@ -189,7 +189,7 @@ Sentiment Monitor by Kevin Veeder
             
             # Create Slack message
             slack_data = {
-                'text': f'{emoji} Sentiment Alert - {alert.keyword_rel.keyword}',
+                'text': f'{prefix} Sentiment Alert - {alert.keyword_rel.keyword}',
                 'attachments': [
                     {
                         'color': color,

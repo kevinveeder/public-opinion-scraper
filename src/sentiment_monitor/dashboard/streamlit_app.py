@@ -93,29 +93,29 @@ def sentiment_color(score):
     else:
         return "#FFD700"  # Yellow
 
-def sentiment_emoji(score):
-    """Get emoji for sentiment score."""
+def sentiment_label(score):
+    """Get label for sentiment score."""
     if score > 0.5:
-        return "😄"
+        return "Very Positive"
     elif score > 0.1:
-        return "🙂"
+        return "Positive"
     elif score > -0.1:
-        return "😐"
+        return "Neutral"
     elif score > -0.5:
-        return "🙁"
+        return "Negative"
     else:
-        return "😞"
+        return "Very Negative"
 
 # Main app
 def main():
     """Main Streamlit application."""
     
     # Title and header
-    st.title("📊 Real-Time Sentiment Monitor")
+    st.title("Real-Time Sentiment Monitor")
     st.markdown("Track public opinion across social media platforms")
     
     # Sidebar
-    st.sidebar.title("🎛️ Controls")
+    st.sidebar.title("Controls")
     
     # Get keywords
     keywords = get_active_keywords()
@@ -150,7 +150,7 @@ def main():
     auto_refresh = st.sidebar.checkbox("Auto-refresh (30s)", value=True)
     
     # Manual refresh button
-    if st.sidebar.button("🔄 Refresh Now"):
+    if st.sidebar.button("Refresh Now"):
         st.cache_data.clear()
     
     # Get data
@@ -175,7 +175,7 @@ def main():
     
     with col2:
         avg_sentiment = summary.get('avg_sentiment', 0)
-        sentiment_change = "↗️" if avg_sentiment > 0 else "↘️" if avg_sentiment < 0 else "➡️"
+        sentiment_change = "↗" if avg_sentiment > 0 else "↘" if avg_sentiment < 0 else "→"
         st.metric(
             "Avg Sentiment",
             f"{avg_sentiment:.3f}",
@@ -199,13 +199,13 @@ def main():
         )
     
     # Sentiment gauge
-    st.subheader("🎯 Current Sentiment")
+    st.subheader("Current Sentiment")
     gauge_fig = create_sentiment_gauge(avg_sentiment)
     st.plotly_chart(gauge_fig, use_container_width=True)
     
     # Time series chart
     if trends:
-        st.subheader("📈 Sentiment Over Time")
+        st.subheader("Sentiment Over Time")
         timeseries_fig = create_timeseries_chart(trends, selected_keyword)
         st.plotly_chart(timeseries_fig, use_container_width=True)
     
@@ -214,31 +214,31 @@ def main():
     
     with col_left:
         # Sentiment distribution
-        st.subheader("📊 Sentiment Distribution")
+        st.subheader("Sentiment Distribution")
         if summary:
             dist_fig = create_distribution_chart(summary)
             st.plotly_chart(dist_fig, use_container_width=True)
     
     with col_right:
         # Volume vs Sentiment correlation
-        st.subheader("🔗 Volume vs Sentiment")
+        st.subheader("Volume vs Sentiment")
         if trends:
             correlation_fig = create_correlation_chart(trends)
             st.plotly_chart(correlation_fig, use_container_width=True)
     
     # Recent posts table
-    st.subheader("📄 Recent Posts")
+    st.subheader("Recent Posts")
     if recent_posts:
         display_recent_posts(recent_posts)
     else:
         st.info("No recent posts found")
     
     # System status in sidebar
-    st.sidebar.subheader("📊 System Status")
+    st.sidebar.subheader("System Status")
     show_system_status()
     
     # Data collection controls
-    st.sidebar.subheader("🔄 Data Collection")
+    st.sidebar.subheader("Data Collection")
     if st.sidebar.button("Collect New Data"):
         collect_data(selected_keyword)
     
@@ -253,7 +253,7 @@ def create_sentiment_gauge(sentiment_score):
         mode = "gauge+number+delta",
         value = sentiment_score,
         domain = {'x': [0, 1], 'y': [0, 1]},
-        title = {'text': f"Sentiment Score {sentiment_emoji(sentiment_score)}"},
+        title = {'text': f"Sentiment Score ({sentiment_label(sentiment_score)})"},
         delta = {'reference': 0},
         gauge = {
             'axis': {'range': [-1, 1]},
@@ -428,14 +428,14 @@ def show_system_status():
         # Collector status
         st.write("**Collectors:**")
         for name, collector in collectors.items():
-            status = "🟢" if collector.is_available() else "🔴"
+            status = "Available" if collector.is_available() else "Unavailable"
             st.write(f"• {name.capitalize()}: {status}")
         
         # Sentiment analyzer status
         st.write("**Sentiment Analysis:**")
         model_info = sentiment_analyzer.get_model_info()
         for model in model_info['available_models']:
-            st.write(f"• {model.capitalize()}: 🟢")
+            st.write(f"• {model.capitalize()}: Available")
         
     except Exception as e:
         st.error(f"Error getting status: {e}")

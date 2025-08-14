@@ -408,7 +408,7 @@ def dashboard(ctx, keyword, hours, refresh):
                 recent_posts = cli_obj.db.get_recent_posts(kw, hours=hours, limit=5)
                 
                 # Create summary table
-                summary_table = Table(title=f"📊 {kw}")
+                summary_table = Table(title=f"Sentiment Analysis - {kw}")
                 summary_table.add_column("Metric", style="cyan")
                 summary_table.add_column("Value", style="yellow")
                 
