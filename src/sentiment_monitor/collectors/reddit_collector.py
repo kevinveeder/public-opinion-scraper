@@ -100,7 +100,9 @@ class RedditCollector:
                     for method_name, search_results in search_methods:
                         collected_count = 0
                         for submission in search_results:
-                            if collected_count >= limit // len(subreddits) // len(search_methods):
+                            # Calculate per-method limit more sensibly
+                            per_method_limit = max(1, limit // (len(subreddits) * len(search_methods)))
+                            if collected_count >= per_method_limit:
                                 break
                                 
                             try:

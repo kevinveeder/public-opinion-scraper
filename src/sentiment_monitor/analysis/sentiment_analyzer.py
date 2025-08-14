@@ -183,7 +183,7 @@ class RoBERTaAnalyzer:
                 "sentiment-analysis",
                 model=self.model_name,
                 tokenizer=self.model_name,
-                return_all_scores=True
+                top_k=None  # Return all scores (replaces deprecated return_all_scores=True)
             )
             
             # Also load tokenizer for length checking
@@ -218,13 +218,17 @@ class RoBERTaAnalyzer:
             results = self.pipeline(text)
             processing_time = time.time() - start_time
             
-            # Convert to our format
-            scores = {result['label']: result['score'] for result in results}
+            # Handle nested list format (RoBERTa returns [[{results}]])
+            if isinstance(results, list) and len(results) > 0 and isinstance(results[0], list):
+                results = results[0]
             
-            # Map labels to our format (may vary by model)
-            positive_score = scores.get('LABEL_2', scores.get('POSITIVE', 0.0))
-            negative_score = scores.get('LABEL_0', scores.get('NEGATIVE', 0.0))
-            neutral_score = scores.get('LABEL_1', scores.get('NEUTRAL', 0.0))
+            # Convert to our format
+            scores = {result['label'].lower(): result['score'] for result in results}
+            
+            # Map labels to our format
+            positive_score = scores.get('positive', 0.0)
+            negative_score = scores.get('negative', 0.0)
+            neutral_score = scores.get('neutral', 0.0)
             
             # Calculate compound score (-1 to 1)
             compound_score = positive_score - negative_score

@@ -64,28 +64,28 @@ class SentimentMonitorCLI:
     def print_info(self, message: str) -> None:
         """Print info message."""
         if self.console:
-            self.console.print(f"[blue]ℹ️  {message}[/blue]")
+            self.console.print(f"[blue]INFO: {message}[/blue]")
         else:
             print(f"INFO: {message}")
     
     def print_success(self, message: str) -> None:
         """Print success message."""
         if self.console:
-            self.console.print(f"[green]✅ {message}[/green]")
+            self.console.print(f"[green]SUCCESS: {message}[/green]")
         else:
             print(f"SUCCESS: {message}")
     
     def print_warning(self, message: str) -> None:
         """Print warning message."""
         if self.console:
-            self.console.print(f"[yellow]⚠️  {message}[/yellow]")
+            self.console.print(f"[yellow]WARNING: {message}[/yellow]")
         else:
             print(f"WARNING: {message}")
     
     def print_error(self, message: str) -> None:
         """Print error message."""
         if self.console:
-            self.console.print(f"[red]❌ {message}[/red]")
+            self.console.print(f"[red]ERROR: {message}[/red]")
         else:
             print(f"ERROR: {message}")
 
@@ -133,7 +133,7 @@ def status(ctx):
         
         for name, collector in cli_obj.collectors.items():
             status_info = collector.test_connection()
-            status = "✅ Available" if status_info['available'] else "❌ Unavailable"
+            status = "Available" if status_info['available'] else "Unavailable"
             details = status_info.get('error', 'Working') if status_info.get('error') else 'Working'
             collector_table.add_row(name.capitalize(), status, details)
         
@@ -146,7 +146,7 @@ def status(ctx):
         
         for model_name in sentiment_info['available_models']:
             model_details = sentiment_info['model_details'][model_name]
-            status = "✅ Available" if model_details['available'] else "❌ Unavailable"
+            status = "Available" if model_details['available'] else "Unavailable"
             sentiment_table.add_row(
                 model_name.capitalize(),
                 status,

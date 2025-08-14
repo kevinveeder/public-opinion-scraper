@@ -89,7 +89,7 @@ class Post(Base):
     comment_count = Column(Integer, default=0)
     
     # Additional metadata (platform-specific)
-    metadata = Column(JSONEncodedDict)
+    post_metadata = Column(JSONEncodedDict)
     
     # Processing flags
     is_processed = Column(Boolean, default=False)
@@ -180,7 +180,7 @@ class Alert(Base):
     resolved_at = Column(DateTime)
     
     # Additional data
-    metadata = Column(JSONEncodedDict)
+    alert_metadata = Column(JSONEncodedDict)
     
     # Relationships
     keyword_rel = relationship("Keyword")
